@@ -1,20 +1,2 @@
-import React from 'react'
-
-export const PricingCard = ({title, price, frequency, features, ctaLabel, premium}:{title:string, price:string, frequency:string, features:string[], ctaLabel:string, premium?:boolean}) => {
-  return (
-    <div className={`p-6 rounded-lg ${premium ? 'bg-gradient-to-br from-[#13263F] to-[#0b2b46]' : 'bg-night/60'} border border-slate-700`}>
-      <div className="flex items-baseline justify-between">
-        <div>
-          <div className="text-sm text-slate-300">{title}</div>
-          <div className="text-2xl font-bold mt-2">{price} <span className="text-sm">/{frequency}</span></div>
-        </div>
-      </div>
-      <ul className="mt-4 space-y-2 text-slate-300">
-        {features.map((f,i)=> <li key={i}>• {f}</li>)}
-      </ul>
-      <div className="mt-6">
-        <button className={`${premium ? 'bg-turquoise text-night' : 'bg-electric text-night'} px-4 py-2 rounded-md font-semibold`}>{ctaLabel}</button>
-      </div>
-    </div>
-  )
-}
+import Link from 'next/link'
+export const PricingCard=({title,price,frequency,features,ctaLabel,premium}:{title:string,price:string,frequency:string,features:string[],ctaLabel:string,premium?:boolean})=><div className={`p-6 rounded-xl border border-slate-700 ${premium?'bg-[#102e44]':'bg-[#10233c]'}`}><div className="text-sm text-slate-300">{title}</div><div className="text-2xl font-bold mt-2">{price} <span className="text-sm">/{frequency}</span></div><ul className="mt-5 space-y-2 text-slate-200">{features.map(f=><li key={f}>✓ {f}</li>)}</ul><Link href={premium?'/legal/subscription':'/auth/signup'} className={`inline-block mt-6 px-5 py-3 rounded-lg font-semibold ${premium?'bg-[#24D7B3]':'bg-[#3973F6]'} text-[#081426]`}>{premium?'Premium — bientôt disponible':ctaLabel}</Link>{premium&&<p className="mt-2 text-xs text-slate-400">Aucun paiement n'est demandé pour le moment.</p>}</div>

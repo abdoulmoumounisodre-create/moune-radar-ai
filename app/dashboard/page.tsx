@@ -1,39 +1,5 @@
-import React from 'react'
-import { DashboardSidebar } from '../../components/DashboardSidebar'
-
-export default function Dashboard(){
-  return (
-    <div className="container mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-4 gap-6">
-      <aside className="lg:col-span-1">
-        <DashboardSidebar />
-      </aside>
-      <section className="lg:col-span-3">
-        <h1 className="text-2xl font-bold">Tableau de bord</h1>
-        <p className="mt-2 text-slate-200">Votre espace personnel. Aucun contenu privé n'est affiché ici dans cette version pré-lancement.</p>
-
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-4 bg-night/60 rounded-lg">
-            <h3 className="font-semibold">Mes destinations favorites</h3>
-            <p className="mt-2 text-slate-300">Aucune donnée — connectez votre compte Supabase pour activer.</p>
-          </div>
-          <div className="p-4 bg-night/60 rounded-lg">
-            <h3 className="font-semibold">Mes alertes</h3>
-            <p className="mt-2 text-slate-300">Aucune alerte configurée.</p>
-          </div>
-        </div>
-
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-4 bg-night/60 rounded-lg">
-            <h3 className="font-semibold">Mon abonnement</h3>
-            <p className="mt-2 text-slate-300">Aucun abonnement actif dans la version de pré-lancement.</p>
-          </div>
-          <div className="p-4 bg-night/60 rounded-lg">
-            <h3 className="font-semibold">Historique</h3>
-            <p className="mt-2 text-slate-300">Aucun historique disponible.</p>
-          </div>
-        </div>
-
-      </section>
-    </div>
-  )
-}
+'use client'
+import {useEffect,useState} from 'react'
+import Link from 'next/link'
+import {supabaseClient} from '../../lib/supabaseClient'
+export default function Dashboard(){const[email,setEmail]=useState<string|null>(null);const[ready,setReady]=useState(false);useEffect(()=>{if(!supabaseClient){setReady(true);return}supabaseClient.auth.getUser().then(({data})=>{setEmail(data.user?.email||null);setReady(true)})},[]);return <div className="container mx-auto px-6 py-12 max-w-3xl"><h1 className="text-3xl font-bold">Tableau de bord</h1>{!ready?<p className="mt-5">Chargement…</p>:email?<><p className="mt-5">Connecté : {email}</p><div className="mt-5 p-5 rounded-xl bg-[#10233c]">Les alertes enregistrées et l'historique nécessitent encore une base de données configurée. Aucune surveillance réelle n'est active.</div><button onClick={async()=>{await supabaseClient?.auth.signOut();setEmail(null)}} className="mt-6 border border-slate-500 px-4 py-2 rounded-lg">Se déconnecter</button></>:<div className="mt-6 p-5 rounded-xl bg-[#10233c]"><p>Connectez-vous pour accéder à votre espace personnel.</p><Link href="/auth/signin" className="inline-block mt-4 bg-[#24D7B3] text-[#081426] px-4 py-2 rounded-lg font-bold">Connexion</Link></div>}</div>}

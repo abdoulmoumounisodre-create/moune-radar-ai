@@ -1,54 +1,6 @@
-import React from 'react'
-
-export default function SearchPage(){
-  return (
-    <div className="container mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold">Recherche de vols</h1>
-      <p className="mt-2 text-slate-200">Interface de recherche prête — connectez une API aérienne pour activer les résultats.</p>
-
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-6 bg-night/60 rounded-lg">
-          <label className="block font-medium">Ville de départ</label>
-          <input className="mt-2 w-full rounded-md p-2 bg-transparent border border-slate-700" placeholder="Ex: Montréal (YUL)" />
-
-          <label className="block font-medium mt-4">Destination</label>
-          <input className="mt-2 w-full rounded-md p-2 bg-transparent border border-slate-700" placeholder="Ex: Paris ou Monde entier" />
-
-          <label className="block font-medium mt-4">Budget maximum</label>
-          <input className="mt-2 w-full rounded-md p-2 bg-transparent border border-slate-700" placeholder="Ex: 800 $" />
-
-          <label className="block font-medium mt-4">Dates flexibles</label>
-          <select className="mt-2 w-full rounded-md p-2 bg-transparent border border-slate-700">
-            <option>±3 jours</option>
-            <option>±7 jours</option>
-            <option>±14 jours</option>
-          </select>
-        </div>
-
-        <div className="p-6 bg-night/60 rounded-lg">
-          <label className="block font-medium">Réduction minimale</label>
-          <input className="mt-2 w-full rounded-md p-2 bg-transparent border border-slate-700" placeholder="Ex: 30%" />
-
-          <label className="block font-medium mt-4">Nombre de voyageurs</label>
-          <input className="mt-2 w-full rounded-md p-2 bg-transparent border border-slate-700" placeholder="1" />
-
-          <label className="block font-medium mt-4">Préférences d'escales</label>
-          <select className="mt-2 w-full rounded-md p-2 bg-transparent border border-slate-700">
-            <option>Direct</option>
-            <option>1 escale</option>
-            <option>Sans préférence</option>
-          </select>
-
-          <div className="mt-6">
-            <button className="bg-electric text-night px-4 py-2 rounded-md font-semibold">Lancer la recherche</button>
-          </div>
-
-          <div className="mt-6 text-yellow-300">Recherche de vols en préparation.</div>
-
-        </div>
-      </div>
-
-      <div className="mt-8 text-slate-300">Composants prêts pour connecter une API aérienne ultérieurement. Les boutons et formulaires sont des placeholders — aucune recherche réelle n\'est exécutée tant qu\'aucune intégration n\'est configurée.</div>
-    </div>
-  )
+import Link from 'next/link'
+export default function SearchPage({searchParams}:{searchParams?:{[key:string]:string|string[]|undefined}}){
+ const read=(k:string)=>{const v=searchParams?.[k];return typeof v==='string'?v:''}
+ const items=[['Départ',read('origin')],['Destination',read('destination')||'Flexible'],['Budget maximal',read('budget')?read('budget')+' CAD':'Non défini'],['Aller',read('depart')||'Flexible'],['Retour',read('returnDate')||'Flexible']]
+ return <div className="container mx-auto px-6 py-12 max-w-4xl"><h1 className="text-3xl font-bold">Votre recherche de vols</h1><p className="mt-3 text-slate-200">Voici vos critères. Le moteur de tarifs réels sera disponible après connexion à un fournisseur de données aériennes.</p><div className="mt-7 grid sm:grid-cols-2 gap-3">{items.map(([label,value])=><div key={label} className="bg-[#10233c] border border-slate-700 rounded-xl p-4"><div className="text-sm text-slate-400">{label}</div><div className="font-semibold mt-1">{value||'Non renseigné'}</div></div>)}</div><div role="status" className="mt-6 border border-amber-500/40 rounded-xl p-5 bg-amber-950/20"><strong>Recherche en attente d'activation</strong><p className="mt-2 text-slate-200">Aucun vol ni prix n'a été vérifié. Nous ne présentons pas d'offres fictives comme des résultats réels.</p></div><Link href="/" className="inline-block mt-6 bg-[#24D7B3] text-[#081426] font-semibold px-5 py-3 rounded-lg">Modifier mes critères</Link></div>
 }

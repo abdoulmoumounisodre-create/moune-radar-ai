@@ -1,20 +1,8 @@
-import React from 'react'
-
-export default function SignIn(){
-  return (
-    <div className="container mx-auto px-6 py-12">
-      <h1 className="text-2xl font-bold">Connexion</h1>
-      <p className="mt-2 text-slate-200">Connexion via Supabase Auth (non configurée si les variables d'environnement ne sont pas présentes).</p>
-      <div className="mt-6 p-6 bg-night/60 rounded-lg">
-        <label className="block">Email</label>
-        <input className="mt-2 w-full rounded-md p-2 bg-transparent border border-slate-700" />
-        <label className="block mt-4">Mot de passe</label>
-        <input type="password" className="mt-2 w-full rounded-md p-2 bg-transparent border border-slate-700" />
-        <div className="mt-4">
-          <button className="bg-electric text-night px-4 py-2 rounded-md">Se connecter</button>
-        </div>
-        <div className="mt-4 text-yellow-300">Si Supabase n'est pas configuré, la connexion ne fonctionnera pas et cette page affichera des instructions de configuration.</div>
-      </div>
-    </div>
-  )
-}
+'use client'
+import {FormEvent,useState} from 'react'
+import Link from 'next/link'
+import {supabaseClient} from '../../../lib/supabaseClient'
+import {useRouter} from 'next/navigation'
+export default function SignIn(){const router=useRouter();const[email,setEmail]=useState('');const[password,setPassword]=useState('');const[message,setMessage]=useState('');const[busy,setBusy]=useState(false)
+ async function submit(e:FormEvent){e.preventDefault();if(!supabaseClient){setMessage('Connexion indisponible : configuration Supabase manquante.');return}setBusy(true);const{error}=await supabaseClient.auth.signInWithPassword({email,password});setBusy(false);if(error){setMessage(error.message);return}router.push('/dashboard');router.refresh()}
+ return <div className="container mx-auto max-w-lg px-6 py-12"><h1 className="text-3xl font-bold">Connexion</h1><form onSubmit={submit} className="mt-6 p-6 bg-[#10233c] rounded-xl space-y-4"><label className="block">Courriel<input type="email" autoComplete="email" required value={email} onChange={e=>setEmail(e.target.value)} className="mt-2 w-full p-3 bg-[#081426] border border-slate-600 rounded-lg"/></label><label className="block">Mot de passe<input type="password" autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)} className="mt-2 w-full p-3 bg-[#081426] border border-slate-600 rounded-lg"/></label><button disabled={busy} className="bg-[#24D7B3] text-[#081426] rounded-lg px-5 py-3 font-semibold disabled:opacity-50">{busy?'Connexion…':'Se connecter'}</button>{message&&<p role="alert" className="text-amber-300">{message}</p>}</form><p className="mt-4">Pas encore de compte ? <Link className="underline" href="/auth/signup">S'inscrire</Link></p></div>}

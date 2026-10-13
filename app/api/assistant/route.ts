@@ -1,12 +1,2 @@
-import { NextResponse } from 'next/server'
-
-export async function POST(req: Request){
-  // Placeholder server route for assistant — never expose API keys to the browser.
-  const OPENAI_KEY = process.env.OPENAI_API_KEY
-  if(!OPENAI_KEY){
-    return NextResponse.json({ error: 'Assistant IA bientôt disponible.' }, { status: 501 })
-  }
-
-  // When configured, implement server-side call to the model here.
-  return NextResponse.json({ error: 'Assistant IA non configuré dans cette version.' }, { status: 501 })
-}
+import {NextResponse} from 'next/server'
+export async function POST(req:Request){let message='';try{const body=await req.json();message=typeof body?.message==='string'?body.message.trim():''}catch{return NextResponse.json({error:'Requête invalide.'},{status:400})}if(!message||message.length>1500)return NextResponse.json({error:'Votre message doit contenir entre 1 et 1 500 caractères.'},{status:400});return NextResponse.json({error:'Assistant IA en préparation. Aucun service IA n’est connecté pour le moment.'},{status:503})}

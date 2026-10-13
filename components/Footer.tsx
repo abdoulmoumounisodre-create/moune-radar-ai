@@ -1,21 +1,2 @@
-import React from 'react'
 import Link from 'next/link'
-
-export function Footer(){
-  return (
-    <footer className="bg-night/95 text-slate-300 mt-12 border-t border-night/60">
-      <div className="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-start gap-6">
-        <div>
-          <div className="font-bold text-offwhite">MouneRadar AI</div>
-          <div className="mt-2 text-sm">L'IA qui repère les vols à prix cassés.</div>
-        </div>
-        <div className="flex gap-4">
-          <Link href="/legal/terms">Conditions</Link>
-          <Link href="/legal/privacy">Confidentialité</Link>
-          <Link href="/legal/subscription">Abonnement</Link>
-          <Link href="/contact">Contact</Link>
-        </div>
-      </div>
-    </footer>
-  )
-}
+export function Footer(){return <footer className="bg-[#081426] border-t border-slate-700/60 mt-12 text-slate-300"><div className="container mx-auto px-6 py-8 flex flex-wrap justify-between gap-6"><div><strong className="text-white">MouneRadar AI</strong><p className="text-sm mt-2">L'IA qui repère les vols à prix cassés.</p><p className="text-xs mt-2">Pré-lancement : tarifs et alertes en cours d'intégration.</p></div><nav aria-label="Informations légales" className="flex flex-wrap gap-4 text-sm"><Link href="/legal/terms">Conditions</Link><Link href="/legal/privacy">Confidentialité</Link><Link href="/legal/subscription">Abonnement</Link><Link href="/legal/contact">Contact</Link></nav></div></footer>}

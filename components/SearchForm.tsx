@@ -1,18 +1,8 @@
-import React from 'react'
-
-export const SearchForm = () => {
-  return (
-    <form className="bg-night/30 p-4 rounded-md border border-slate-700">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <input placeholder="Ville de départ" className="p-2 rounded-md bg-transparent border border-slate-700" />
-        <input placeholder="Destination (ou Monde entier)" className="p-2 rounded-md bg-transparent border border-slate-700" />
-        <input placeholder="Budget max" className="p-2 rounded-md bg-transparent border border-slate-700" />
-      </div>
-      <div className="mt-3 flex gap-3">
-        <input type="date" className="p-2 rounded-md bg-transparent border border-slate-700" />
-        <input type="date" className="p-2 rounded-md bg-transparent border border-slate-700" />
-        <button className="ml-auto bg-electric text-night px-4 py-2 rounded-md">Enregistrer l'alerte</button>
-      </div>
-    </form>
-  )
+'use client'
+import {useState} from 'react'
+import {useRouter} from 'next/navigation'
+export const SearchForm=()=>{
+ const router=useRouter();const [origin,setOrigin]=useState('');const [destination,setDestination]=useState('');const [budget,setBudget]=useState('');const [depart,setDepart]=useState('');const [returnDate,setReturnDate]=useState('')
+ function submit(e:React.FormEvent){e.preventDefault();const p=new URLSearchParams({origin,destination,budget,depart,returnDate});router.push('/search?'+p.toString())}
+ return <form onSubmit={submit} className="bg-[#10233c] p-5 rounded-xl border border-slate-700" aria-label="Préparer une recherche de vols"><div className="grid grid-cols-1 sm:grid-cols-3 gap-3"><input aria-label="Ville de départ" required value={origin} onChange={e=>setOrigin(e.target.value)} placeholder="Départ (ex. YUL)" className="p-3 rounded-lg bg-[#081426] border border-slate-600"/><input aria-label="Destination" value={destination} onChange={e=>setDestination(e.target.value)} placeholder="Destination" className="p-3 rounded-lg bg-[#081426] border border-slate-600"/><input aria-label="Budget maximum" type="number" min="1" value={budget} onChange={e=>setBudget(e.target.value)} placeholder="Budget max (CAD)" className="p-3 rounded-lg bg-[#081426] border border-slate-600"/></div><div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3"><input aria-label="Date de départ" type="date" value={depart} onChange={e=>setDepart(e.target.value)} className="p-3 rounded-lg bg-[#081426] border border-slate-600"/><input aria-label="Date de retour" type="date" min={depart||undefined} value={returnDate} onChange={e=>setReturnDate(e.target.value)} className="p-3 rounded-lg bg-[#081426] border border-slate-600"/><button type="submit" className="bg-[#24D7B3] text-[#081426] px-4 py-3 rounded-lg font-bold">Préparer ma recherche →</button></div><p className="text-xs text-slate-400 mt-3">Pré-lancement : aucun tarif réel n'est encore interrogé.</p></form>
 }

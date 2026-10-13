@@ -1,10 +1,3 @@
-import { NextResponse } from 'next/server'
-
-export async function GET(){
-  // Administration checks must be performed server-side.
-  const adminSecret = process.env.ADMIN_SECRET || process.env.SUPABASE_SERVICE_ROLE
-  if(!adminSecret){
-    return NextResponse.json({ error: 'Administration non configurée. Définissez ADMIN_SECRET côté serveur.' }, { status: 403 })
-  }
-  return NextResponse.json({ ok: true })
-}
+import {NextResponse} from 'next/server'
+// Ne jamais considérer la présence d'une clé serveur comme une authentification administrateur.
+export async function GET(){return NextResponse.json({error:'Accès administrateur désactivé jusqu’à la mise en place d’une vérification de session et de rôle côté serveur.'},{status:403})}
