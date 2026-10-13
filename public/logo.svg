@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="40" viewBox="0 0 300 100" fill="none">
+  <!-- Background transparent -->
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#3973F6"/>
+      <stop offset="1" stop-color="#24D7B3"/>
+    </linearGradient>
+  </defs>
+  <!-- Stylized M with radar arc and wings -->
+  <g transform="translate(10,10)">
+    <!-- M letter base -->
+    <path d="M10 80 L30 20 L50 80 L70 20 L90 80" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.98" />
+    <!-- Wing / plane silhouette -->
+    <path d="M120 40 L160 30 L150 40 L170 45 L140 50 L150 60 Z" fill="#F8FBFF" opacity="0.95" />
+    <!-- Radar arcs -->
+    <path d="M60 80 A40 40 0 0 1 140 80" stroke="#24D7B3" stroke-width="3" fill="none" opacity="0.6"/>
+    <path d="M70 80 A30 30 0 0 1 130 80" stroke="#3973F6" stroke-width="2" fill="none" opacity="0.4"/>
+    <!-- Brand name -->
+    <text x="200" y="62" font-family="Inter, Roboto, Arial" font-size="28" fill="#F8FBFF">MouneRadar <tspan font-weight="700">AI</tspan></text>
+  </g>
+</svg>
