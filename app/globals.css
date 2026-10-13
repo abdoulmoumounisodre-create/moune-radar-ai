@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,body,#root{
+  height:100%;
+}
+body{
+  background:linear-gradient(180deg,#081426 0%,#0b2740 100%);
+  color:var(--tw-color-offwhite, #F8FBFF);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Animations for mascot and radar */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 700ms ease-out both;
+}
+
+.animate-slow-spin {
+  animation: slowSpin 9s linear infinite;
+}
+
+/* Floating chat styles override */
+.mascot-floating { /* fallback for non-tailwind utility use */ }
