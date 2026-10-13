@@ -3,6 +3,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
+import FloatingMascot from '../components/FloatingMascot'
 
 export const metadata: Metadata = {
   title: 'MouneRadar AI — L\'IA qui repère les vols à prix cassés',
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }){
           {children}
         </main>
         <Footer />
+        <FloatingMascot />
       </body>
     </html>
   )

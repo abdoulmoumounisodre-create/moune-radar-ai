@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { SearchForm } from '../components/SearchForm'
 import { FlightCardDemo } from '../components/FlightCardDemo'
 import { RadarAnimation } from '../components/RadarAnimation'
+import Mascot from '../components/Mascot'
 
 export default function Home(){
   return (
@@ -23,14 +24,30 @@ export default function Home(){
             <p className="mt-2 text-slate-200">MouneRadar AI analyse (lorsque vous activez les intégrations) des sources de prix pour identifier des opportunités jusqu\'à 50% d\'économie. Cette page de pré-lancement présente l\'interface et les workflows — aucune donnée réelle n\'est surveillée pour l'instant.</p>
           </div>
         </div>
-        <div className="relative">
-          <div className="bg-night/60 rounded-2xl p-6 shadow-xl">
-            <RadarAnimation />
-            <div className="mt-6 grid gap-4">
-              <FlightCardDemo variant="demo" />
-              <FlightCardDemo variant="demo" />
+        <div className="relative flex justify-center lg:justify-end">
+          <div className="w-full max-w-md">
+            <div className="bg-night/60 rounded-2xl p-6 shadow-xl">
+              <RadarAnimation />
+              <div className="mt-6 grid gap-4">
+                <FlightCardDemo variant="demo" />
+                <FlightCardDemo variant="demo" />
+              </div>
             </div>
           </div>
+          <div className="absolute right-0 top-8 hidden md:block md:-translate-x-6">
+            {/* Mascot displayed to the right of the hero on larger screens */}
+            <div className="w-56 lg:w-72">
+              <Mascot size="280px" className="object-cover" />
+            </div>
+          </div>
+
+          {/* mobile-friendly lightweight mascot under the main cards */}
+          <div className="mt-6 block md:hidden">
+            <div className="w-40 mx-auto">
+              <Mascot size="160px" />
+            </div>
+          </div>
+
         </div>
       </section>
 

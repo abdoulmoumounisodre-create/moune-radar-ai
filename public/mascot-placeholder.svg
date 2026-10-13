@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none">
+  <rect width="240" height="240" rx="20" fill="#081426" />
+  <g transform="translate(20,20)">
+    <circle cx="40" cy="40" r="36" fill="#0b2b46" stroke="#24D7B3" stroke-opacity="0.12" />
+    <path d="M18 58 C26 40, 56 40, 64 58 L64 72 L18 72 Z" fill="#F8FBFF" opacity="0.95" />
+    <rect x="6" y="78" width="88" height="36" rx="6" fill="#071A2B" />
+    <text x="110" y="110" fill="#F8FBFF" font-size="12" font-family="Inter, Arial" >Moune</text>
+  </g>
+</svg>
