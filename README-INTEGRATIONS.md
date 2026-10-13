@@ -1,0 +1,11 @@
+# MouneRadar AI — kit d'intégration (5 services)
+
+Le ZIP fournit du code, **pas des comptes ni des clés**. Les fonctionnalités ne deviennent actives qu'après configuration, déploiement et tests. Ne pas vendre Premium avant d'avoir testé les avantages annoncés.
+
+1. **Supabase** : créer un projet, exécuter `supabase/schema.sql` dans SQL Editor, activer Email Auth. Dans Vercel Production, ajouter `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` et `SUPABASE_SERVICE_ROLE_KEY` (serveur uniquement). Vérifier inscription et connexion.
+2. **Amadeus for Developers** : créer des identifiants Flight Offers Search. Ajouter `AMADEUS_CLIENT_ID`, `AMADEUS_CLIENT_SECRET`, `AMADEUS_ENV=test` puis `production` seulement après approbation de l'accès production. Recherches par codes IATA exacts et dates ; l'environnement test n'est pas une source commerciale fiable.
+3. **Assistant IA** : ajouter `OPENAI_API_KEY` et facultativement `OPENAI_MODEL` (défaut `gpt-4o-mini`). Coût variable par utilisation. Ajouter des protections anti-abus avant trafic public.
+4. **Stripe** : créer un produit avec un prix **récurrent de 29,99 CAD / mois** et ajouter `STRIPE_SECRET_KEY`, `STRIPE_PREMIUM_PRICE_ID`. Configurer un webhook vers `https://moune-radar-ai.vercel.app/api/billing/webhook`, événements `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, puis ajouter `STRIPE_WEBHOOK_SECRET`. Ajouter `NEXT_PUBLIC_SITE_URL=https://moune-radar-ai.vercel.app`. Tester avec les clés Stripe TEST avant passage en LIVE. Les abonnés n'ont pas encore de fonctionnalités exclusives : ne pas encaisser tant qu'elles ne sont pas prêtes.
+5. **Alertes** : l'API `/api/alerts` enregistre et supprime les alertes par utilisateur. **La surveillance automatique et l'envoi de courriels ne sont pas inclus** : ils nécessitent un planificateur et un prestataire d'envoi, des quotas, une logique anti-doublons et une gestion des désabonnements. Ne pas promettre d'alertes actives avant cette étape.
+
+Important : les variables secrètes ne doivent jamais être placées dans `NEXT_PUBLIC_...`, sauf l'URL Supabase et sa clé publique anon. Après ajout des variables Vercel, redéployer et tester chaque flux. Sauvegarder les fichiers existants avant installation. Ne pas modifier HumanTexte.

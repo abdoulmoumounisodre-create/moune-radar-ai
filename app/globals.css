@@ -32,3 +32,65 @@ body{
 
 /* Floating chat styles override */
 .mascot-floating { /* fallback for non-tailwind utility use */ }
+
+
+/* MouneRadar AI : correction mascotte */
+img[src*="mascot"] {
+  max-width: 140px !important;
+  max-height: 180px !important;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* MOUNE RADAR AI — RESPONSIVE MASCOT */
+
+.moune-mascot {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.moune-hero {
+    width: min(100%, 420px);
+    height: auto;
+    margin-inline: auto;
+}
+
+.moune-assistant {
+    width: 160px;
+    height: auto;
+}
+
+.moune-avatar {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+    .moune-hero {
+        width: min(100%, 320px);
+    }
+
+    .moune-assistant {
+        width: 130px;
+    }
+}
+
+@media (max-width: 640px) {
+    .moune-hero {
+        width: min(100%, 240px);
+    }
+
+    .moune-assistant {
+        width: 100px;
+    }
+
+    .moune-avatar {
+        width: 48px;
+        height: 48px;
+    }
+}

@@ -37,14 +37,14 @@ export default function Home(){
           <div className="absolute right-0 top-8 hidden md:block md:-translate-x-6">
             {/* Mascot displayed to the right of the hero on larger screens */}
             <div className="w-56 lg:w-72">
-              <Mascot size="280px" className="object-cover" />
+              <Mascot variant="full" size="280px" className="moune-hero" />
             </div>
           </div>
 
           {/* mobile-friendly lightweight mascot under the main cards */}
           <div className="mt-6 block md:hidden">
             <div className="w-40 mx-auto">
-              <Mascot size="160px" />
+              <Mascot variant="full" size="160px" className="moune-hero" />
             </div>
           </div>
 

@@ -37,7 +37,7 @@ export default function ChatWidget({ onClose }: { onClose: ()=>void }){
       <div className="flex items-center justify-between px-4 py-3 border-b border-night/60">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-turquoise">
-            <img src="/mascot.png" alt="Moune" onError={(e)=>{ (e.target as HTMLImageElement).src = '/mascot.png' }} />
+            <img src="/mascots/moune-portrait-256.webp" alt="Moune" onError={(e)=>{ (e.target as HTMLImageElement).src = '/mascot-placeholder.svg' }} />
           </div>
           <div>
             <div className="font-semibold text-offwhite">Moune — Assistant IA</div>

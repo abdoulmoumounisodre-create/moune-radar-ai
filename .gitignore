@@ -6,3 +6,8 @@ coverage
 .vscode
 .DS_Store
 .idea
+
+# Archives locales Moune Radar AI
+.moune-backups/
+moune_radar_formats.zip
+MouneRadar_5_integrations.zip
