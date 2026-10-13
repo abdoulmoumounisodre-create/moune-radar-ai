@@ -14,7 +14,7 @@ export default function Mascot({ alt = "Moune — mascotte", className = '', siz
   function handleError(){
     if(!errored){
       setErrored(true)
-      setSrc('/mascot-placeholder.svg')
+      setSrc('/mascot.png')
     }
   }
 
