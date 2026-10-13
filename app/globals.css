@@ -32,3 +32,13 @@ body{
 
 /* Floating chat styles override */
 .mascot-floating { /* fallback for non-tailwind utility use */ }
+
+
+/* MouneRadar AI : correction mascotte */
+img[src*="mascot"] {
+  max-width: 140px !important;
+  max-height: 180px !important;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
