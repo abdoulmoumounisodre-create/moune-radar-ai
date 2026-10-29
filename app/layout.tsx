@@ -8,9 +8,14 @@ import FloatingMascot from '../components/FloatingMascot'
 export const metadata: Metadata = {
   title: 'MouneRadar AI — L\'IA qui repère les vols à prix cassés',
   description: 'Radar intelligent pour découvrir des vols à prix cassés. Pré-lancement — plateforme d\'alertes de billets d\'avion.',
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }, { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
   openGraph: {
     title: 'MouneRadar AI',
     description: 'L\'IA qui repère les vols à prix cassés',
+    images: [{ url: '/logo.svg', alt: 'MouneRadar AI' }],
   }
 }
 
